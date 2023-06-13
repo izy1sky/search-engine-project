@@ -15,11 +15,11 @@
                 <v-btn 
                 color="indigo" 
                 variant="flat" 
-                :to="{name:'SearchPage', params: {param: searchParam}}"
+                :to="{name:'DetailPage', params: {param: searchParam}}"
                 type="submit"
                 :disabled="!form"
                 >search</v-btn>
-                
+
                 <v-btn 
                 class="ms-4"
                 color="indigo" 
@@ -60,6 +60,6 @@ function changeMode() {
 }
 
 function submit() {
-    router.push({name:'SearchPage', params:{param: searchParam.value}})
+    router.push({name:'DetailPage', params:{param: searchParam.value}})
 }
 </script>

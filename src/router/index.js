@@ -8,10 +8,16 @@ const routes = [
     component: ()=>import('@/views/Home.vue')
   },
   {
-    path:'/:param',
+    path:'/search',
     name:'SearchPage',
     component:()=>import('@/views/SearchPage.vue'),
-    props:true
+    props:true,
+    children: [{
+      path: ':param',
+      name: 'DetailPage',
+      component: ()=>import ('@/views/DetailPage.vue'),
+      props:true
+    }]
   }
 ]
 
