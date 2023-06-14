@@ -24,12 +24,17 @@
                 color="indigo" 
                 @click.prevent=" changeMode"
                 variant="flat"
-                >{{ btnString }}</v-btn>
+                >{{ type? 'Ranked Search' : 'Boolean Search' }}</v-btn>
             </template>    
             <template v-slot:message="{ message }">
                 <span style="color: red; font-weight: bold;"> {{ message }} </span>
             </template>
         </v-text-field>
+        <v-radio-group v-model="rankedSearchType" v-if="!type" inline density="compact">
+            <v-radio label="Normal Ranked Search" value="Normal Ranked Search" class="ms-4"></v-radio>
+            <v-radio label="Multi-news summarization" value="Multi-news summarization" class="ms-4"></v-radio>
+            <v-radio label="QA" value="QA" class="ms-4"></v-radio>
+        </v-radio-group>
     </v-form>
     
 </template>
@@ -40,15 +45,15 @@ import { useRouter } from 'vue-router';
 const searchString = ref("")
 const router = useRouter()
 const form = ref(false)
+const rankedSearchType = ref("")
 const rules = ref([
     (value) => Boolean(value) || 'Query cannot be empty!'
 ])
-const btnString = computed(() => {
-    return type.value ? 'Ranked Search' : 'Boolean Search'
-})
+
 const typeString = computed(() => {
-    return type.value ? 'Boolean Search' : 'Ranked Search'
+    return type.value ? 'Boolean Search' : rankedSearchType.value
 })
+
 const type = ref(true)
 
 
