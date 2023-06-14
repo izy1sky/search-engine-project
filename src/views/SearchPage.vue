@@ -6,14 +6,14 @@
                     <TheSearchBar></TheSearchBar>
                 </v-card-item>
                 <v-divider class="my-2"></v-divider>
-                <RouterView></RouterView>
+                <DetailPage :key="$route.query" :query="$route.query.q" :type="$route.query.type"></DetailPage>
             </v-card>
         </v-container>
     </v-main>
 </template>
 <script setup>
 import { ref } from 'vue';
-
+import DetailPage from '../components/DetailPage.vue';
 import BackgroundImage from "@/assets/vbanner.jpg"
 import TheSearchBar from '@/components/TheSearchBar.vue';
 const bgImage = ref(`url(${BackgroundImage})`)

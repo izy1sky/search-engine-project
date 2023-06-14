@@ -37,12 +37,7 @@
 import { computed } from '@vue/reactivity';
 import { ref } from 'vue';
 import result from '@/exapmle_data/result.json'
-const props = defineProps({
-    'param': {
-        type:String,
-        required:true
-    }
-})
+const props = defineProps(['query', 'type'])
 const startTime = performance.now()
 let endTime = performance.now()
 const timeSpend = ref(0)
@@ -62,9 +57,8 @@ async function getInitData(query, type) {
 }
 
 async function init() {
-    const searchParam = new URLSearchParams(props.param)
-    const type = searchParam.get('type')
-    const query = searchParam.get('q')
+    const type = props.type
+    const query = props.query
     console.log(type + '----' + query);
     const data = await getInitData(query, type)
     initData.value = data

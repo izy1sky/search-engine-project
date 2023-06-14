@@ -15,7 +15,6 @@
                 <v-btn 
                 color="indigo" 
                 variant="flat" 
-                :to="{name:'DetailPage', params: {param: searchParam}}"
                 type="submit"
                 :disabled="!form"
                 >search</v-btn>
@@ -44,10 +43,6 @@ const form = ref(false)
 const rules = ref([
     (value) => Boolean(value) || 'Query cannot be empty!'
 ])
-const searchParam = computed(() => {
-    const param1 = new URLSearchParams({q: searchString.value, type: typeString.value})
-    return param1.toString()
-})
 const btnString = computed(() => {
     return type.value ? 'Ranked Search' : 'Boolean Search'
 })
@@ -55,11 +50,13 @@ const typeString = computed(() => {
     return type.value ? 'Boolean Search' : 'Ranked Search'
 })
 const type = ref(true)
+
+
 function changeMode() {
     type.value = !type.value
 }
 
 function submit() {
-    router.push({name:'DetailPage', params:{param: searchParam.value}})
+    router.push({name:'SearchPage', query:{q: searchString.value, type: typeString.value}})
 }
 </script>
