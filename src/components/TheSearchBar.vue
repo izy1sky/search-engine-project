@@ -72,4 +72,3 @@ function changeMode() {
 function submit() {
     router.push({name:'SearchPage', query:params.value})
 }
-</script>
