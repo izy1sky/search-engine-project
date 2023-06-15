@@ -38,6 +38,7 @@
     </v-form>
     
 </template>
+
 <script setup>
 import { computed } from '@vue/reactivity';
 import { ref } from 'vue';
@@ -72,3 +73,4 @@ function changeMode() {
 function submit() {
     router.push({name:'SearchPage', query:params.value})
 }
+</script>
